@@ -36,14 +36,12 @@ const FavoriteScreen: React.FC = () => {
                     </View>
 
                     <View style={styles.rowBetween}>
-                        <Text style={styles.date}>{item.readable_from_date} - {item.readable_to_date}</Text>
+                        <Text style={styles.date}>{item.readable_from_date} {item.readable_to_date}</Text>
                         <Text style={styles.location}>{item.city}, {item.country}</Text>
                     </View>
 
-                    {item.event_price_from && item.event_price_to && (
-                        <Text style={styles.price}>${item.event_price_from} - ${item.event_price_to}</Text>
-                    )}
-
+                   <Text style={styles.price}>{"$"}{item.event_price_to}-{"$"}{item.event_price_from}</Text>
+                   
                     <View style={styles.tagsRow}>
                         <View style={styles.tagsLeft}>
                             {item.keywords?.map((tag, index) => (

@@ -84,7 +84,8 @@ const BottomTabs = () => {
                   { tintColor: focused ? "#000" : "#999" },
                 ]}
               />
-              <Text style={[styles.label, { color: focused ? "#000" : "#999" }]}>
+              <Text style={[styles.label, { color: focused ? "#000" : "#999" }]}
+                numberOfLines={1}>
                 Favorite
               </Text>
             </View>
@@ -168,9 +169,13 @@ const styles = StyleSheet.create({
   },
 
   label: {
-    fontSize: hp(1),
+    fontSize: hp(0.9),
+    fontWeight: "600",
     color: "#999",
-    marginTop: hp(0.5), 
+    marginTop: hp(0.5),
+    textAlign: "center",
+    flexWrap: "nowrap",
+
   },
 });
 
