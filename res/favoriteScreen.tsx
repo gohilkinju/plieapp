@@ -105,7 +105,6 @@ const styles = StyleSheet.create({
         flex: 1,
         justifyContent: "center",
         alignItems: "center",
-        backgroundColor: "#fff",
     },
     rowBetween: {
         flexDirection: "row",
@@ -138,13 +137,14 @@ const styles = StyleSheet.create({
     },
     header: {
         padding: 20,
-        marginVertical: 15,
+        marginBottom:20,
         backgroundColor: colours.white,
         borderBottomRightRadius: 15,
         borderBottomLeftRadius: 15,
     },
     greetingText: {
         fontSize: 28,
+        paddingTop: 30,
         fontWeight: "bold",
         color: "#000",
     },
