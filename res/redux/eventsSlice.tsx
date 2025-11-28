@@ -14,15 +14,16 @@ const eventsSlice = createSlice({
   initialState,
   reducers: {
     toggleFavorite: (state, action: PayloadAction<number>) => {
-      const eventId = action.payload;
-      const event = state.data.find(e => e.event_id === eventId);
+      const uniqueId = action.payload;
+      const event = state.data.find(e => e.uniqueId === uniqueId);
+      console.log("Toggling favorite for event with uniqueId:", uniqueId);
       if (event) {
         event.isFavorite = !event.isFavorite;
 
         if (event.isFavorite) {
           state.favorites.push(event);
         } else {
-          state.favorites = state.favorites.filter(fav => fav.event_id !== eventId);
+          state.favorites = state.favorites.filter(fav => fav.uniqueId !== uniqueId);
         }
       }
     },

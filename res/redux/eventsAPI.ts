@@ -24,7 +24,12 @@ export const fetchEvents = createAsyncThunk<
         return rejectWithValue(data.message || "Failed to fetch events");
       }
 
-      return data.data.events;
+      // return data.data.events;
+       return data.data.events.map((item, index) => ({
+        ...item,
+        uniqueId: `${index}`,  // <-- unique ID
+      }));
+
     } catch (error) {
       return rejectWithValue("Network error");
     }

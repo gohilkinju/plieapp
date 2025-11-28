@@ -53,7 +53,7 @@ const FavoriteScreen: React.FC = () => {
 
                         <View style={styles.rightIconsContainer}>
                             <Image source={images.vector} style={styles.arrowIcon} />
-                            <TouchableOpacity onPress={() => dispatch(toggleFavorite(item.event_id))}>
+                            <TouchableOpacity onPress={() => dispatch(toggleFavorite(item.uniqueId))}>
                                 <Image
                                     source={item.isFavorite ? images.greenheart : images.heart}
                                     style={styles.heartIcon}
@@ -87,7 +87,7 @@ const FavoriteScreen: React.FC = () => {
                     <FlatList
                         data={favoriteEvents}
                         renderItem={({ item }) => <EventListItem item={item} />}
-                        keyExtractor={item => item.event_id.toString()}
+                        keyExtractor={item => item.uniqueId.toString()}
                         contentContainerStyle={styles.listContent}
                         ItemSeparatorComponent={() => <View style={styles.itemSeparator} />}
                         extraData={favoriteEvents}
