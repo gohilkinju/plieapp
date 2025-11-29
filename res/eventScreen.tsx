@@ -24,6 +24,7 @@ const dispatch = useDispatch<AppDispatch>();
 
 const { data, loading, error } = useSelector((state: RootState) => state.events);
 
+
     useEffect(() => {
         dispatch(fetchEvents());
     }, []);
@@ -87,7 +88,7 @@ const { data, loading, error } = useSelector((state: RootState) => state.events)
                                     style={styles.heartIcon}
                                 />
                                 :
-                                <TouchableOpacity onPress={() => dispatch(toggleFavorite(item.event_id))}>
+                                <TouchableOpacity onPress={() => dispatch(toggleFavorite(item.uniqueId))}>
                                     <Image
                                         source={images.heart}
                                         style={styles.heartIcon}
@@ -113,7 +114,7 @@ const { data, loading, error } = useSelector((state: RootState) => state.events)
                 <FlatList
                     data={data}
                     renderItem={({ item }) => <EventListItem item={item} />}
-                    keyExtractor={(item) => item.event_id.toString()}
+                    keyExtractor={(item) => item.uniqueId.toString()}
                     contentContainerStyle={styles.listContent}
                     ItemSeparatorComponent={() => <View style={styles.itemSeparator} />}
                 />
@@ -167,13 +168,14 @@ const styles = StyleSheet.create({
     },
     header: {
         padding: 20,
-        marginVertical: 15,
+        marginBottom:20,
         backgroundColor: colours.white,
         borderBottomRightRadius: 15,
         borderBottomLeftRadius: 15,
     },
     greetingText: {
         fontSize: 28,
+        paddingTop: 30,
         fontWeight: "bold",
         color: "#000",
     },

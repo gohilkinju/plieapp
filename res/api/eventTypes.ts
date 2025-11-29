@@ -7,6 +7,7 @@ export interface Event {
   tags?: string[];
   image?: string;
   isFavorite?: boolean;
+  uniqueId:number;
 }
 
 export interface EventsState {

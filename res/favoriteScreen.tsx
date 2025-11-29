@@ -36,14 +36,12 @@ const FavoriteScreen: React.FC = () => {
                     </View>
 
                     <View style={styles.rowBetween}>
-                        <Text style={styles.date}>{item.readable_from_date} - {item.readable_to_date}</Text>
+                        <Text style={styles.date}>{item.readable_from_date} {item.readable_to_date}</Text>
                         <Text style={styles.location}>{item.city}, {item.country}</Text>
                     </View>
 
-                    {item.event_price_from && item.event_price_to && (
-                        <Text style={styles.price}>${item.event_price_from} - ${item.event_price_to}</Text>
-                    )}
-
+                   <Text style={styles.price}>{"$"}{item.event_price_to}-{"$"}{item.event_price_from}</Text>
+                   
                     <View style={styles.tagsRow}>
                         <View style={styles.tagsLeft}>
                             {item.keywords?.map((tag, index) => (
@@ -55,7 +53,7 @@ const FavoriteScreen: React.FC = () => {
 
                         <View style={styles.rightIconsContainer}>
                             <Image source={images.vector} style={styles.arrowIcon} />
-                            <TouchableOpacity onPress={() => dispatch(toggleFavorite(item.event_id))}>
+                            <TouchableOpacity onPress={() => dispatch(toggleFavorite(item.uniqueId))}>
                                 <Image
                                     source={item.isFavorite ? images.greenheart : images.heart}
                                     style={styles.heartIcon}
@@ -89,7 +87,7 @@ const FavoriteScreen: React.FC = () => {
                     <FlatList
                         data={favoriteEvents}
                         renderItem={({ item }) => <EventListItem item={item} />}
-                        keyExtractor={item => item.event_id.toString()}
+                        keyExtractor={item => item.uniqueId.toString()}
                         contentContainerStyle={styles.listContent}
                         ItemSeparatorComponent={() => <View style={styles.itemSeparator} />}
                         extraData={favoriteEvents}
@@ -107,7 +105,6 @@ const styles = StyleSheet.create({
         flex: 1,
         justifyContent: "center",
         alignItems: "center",
-        backgroundColor: "#fff",
     },
     rowBetween: {
         flexDirection: "row",
@@ -140,13 +137,14 @@ const styles = StyleSheet.create({
     },
     header: {
         padding: 20,
-        marginVertical: 15,
+        marginBottom:20,
         backgroundColor: colours.white,
         borderBottomRightRadius: 15,
         borderBottomLeftRadius: 15,
     },
     greetingText: {
         fontSize: 28,
+        paddingTop: 30,
         fontWeight: "bold",
         color: "#000",
     },
